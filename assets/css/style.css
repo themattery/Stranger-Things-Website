@@ -14,7 +14,7 @@
 }
 
 body {
-  background-image: url(./img/backgroundST.jpg);
+  background-image: url(./backgroundST.jpg);
   background-position: center; 
   background-size: cover;
   background-attachment: fixed;
@@ -33,7 +33,7 @@ body {
   background-color: #fff;
   border-radius: 0 0 20px 20px;
   border-bottom: 2px solid var(--red);
-  min-width: 800px;
+  min-width: 600px;
 }
 
 .header ul {
@@ -174,13 +174,12 @@ strong {
   font-size: 1.5rem;
 }
 
-
-
 /* Cards */
 .cards-box {
   display: flex;
   justify-content: space-between;
   margin: 20px auto;
+  gap: 10px;
 }
 
 .card {
@@ -228,10 +227,10 @@ strong {
 /* Info Cards */
 
 .info-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  gap: 2rem;
+  display: flex;
+  justify-content: left;
   flex-wrap: wrap;
+  gap: 2rem;
   border: 2px solid var(--grey);
   border-radius: 10px;
   padding: 20px;
@@ -268,4 +267,34 @@ strong {
   overflow: hidden;
   white-space: nowrap;
   padding: 0 10px;
+}
+
+@media (max-width: 800px) {
+  .main-logo {
+    width: auto;
+  }
+  .container {
+    max-width: 800px;
+  }
+  .info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header a {
+    display: none; 
+  }
+  .header {
+    min-width: 400px;
+  }
+  .main-logo {
+    width: auto;
+  }
+  .card {
+    width: 100px;
+    height: 100px;
+  }
 }
