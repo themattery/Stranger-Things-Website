@@ -18,3 +18,7 @@ nav a {
 nav a:hover {
   color: #0070f3;
 }
+
+.img {
+  border-radius: 2rem;
+}
