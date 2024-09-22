@@ -1,60 +1,35 @@
 "use client";
-import { useState } from 'react';
-
-const user = {
-  name: "Harry Potter",
-  imageUrl: "",
-  age: 90,
-};
-
-const products = [
-  {title: 'Order of Phoenix', id: 5},
-  {title: 'Sorcerer\'s Stone', id: 1},
-  {title: 'Halfblood Prince', id: 6},
-];
-
-const productsList = products.map(product =>
-  <li key={product.id}>
-    {product.title}
-  </li>
-)
-
-function Button() {
-  const [count, setCount] = useState(0);
-
-  function messageAlert() {
-    setCount(count + 1);
-  }
-
-  return (
-    <button onClick={messageAlert}>
-      Click {count} times before!
-    </button>
-  );
-}
-
-function MyImage() {
-  return (
-    <img class="img" src="https://picsum.photos/200/200"/>
-  );
-}
-
-function MyList() {
-  return (
-    <ul>
-      {productsList}
-    </ul>
-  );
-}
+import { useEffect, useState } from 'react';
+import { supabase } from '../lib/supabaseClient';
 
 export default function HomePage() {
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    async function fetchCards() {
+      const { data, error } = await supabase.from('cards').select('*');
+      if (error) {
+        console.error('Erro ao buscar dados:', error);
+      } else {
+        console.log('Dados buscados:', data);
+        setCards(data);
+      }
+    }
+    fetchCards();
+  }, []);
+
   return (
-    <>
-      <h1>Welcome to the Home Page</h1>
-      <MyImage />
-      <Button />
-      <MyList />
-      <Button />
-    </>
-    );
+    <div>
+      <h1>Cards</h1>
+      <div class="info-cards-grid">
+        {cards.map((card) => (
+          <div key={card.id} class="info-card">
+            <img src={card.image}  alt={card.title} />
+            <div class="info-card-title">{card.title.toUpperCase()}</div>
+            <p>Tipo: {card.type}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }

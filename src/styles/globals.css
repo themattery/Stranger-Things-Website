@@ -1,3 +1,12 @@
+:root {
+  --red: #8a2121;
+  --light-red: #ef4135;
+  --blue: #03aeef;
+  --grey: #726d67;
+  --bg-color: #fff;
+  --shadow-color: #323232;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -19,6 +28,31 @@ nav a:hover {
   color: #0070f3;
 }
 
-.img {
-  border-radius: 2rem;
+.info-cards-grid {
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  gap: 2rem;
+  border: 2px solid var(--grey);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.info-card {
+  max-width: 104px;
+  height: fit-content;
+  background: black;
+  color: #fff;
+  border: 2px solid var(--shadow-color);
+  box-shadow: 4px 4px var(--shadow-color);
+  border-radius: 5px;
+  font-family: Teko, sans-serif;
+  transition: 0.5s;
+}
+
+.info-card:hover {
+  cursor: pointer;
+  transform: translateY(-4px);
+  box-shadow: 8px 8px var(--red);
+  border-color: var(--red);
 }
