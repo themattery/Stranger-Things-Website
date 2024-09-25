@@ -17,8 +17,9 @@ function Logo() {
   );
 }
 
-function Cards() {
+function Cards({ filter }) {
   const [cards, setCards] = useState([]);
+
   useEffect(() => {
     async function fetchCards() {
       const { data, error } = await supabase.from('cards').select('*');
@@ -32,19 +33,19 @@ function Cards() {
     fetchCards();
   }, []);
 
+  const filteredCards = cards.filter((card) =>
+    filter === 'all' ? true : card.type === filter
+  );
+
   return (
     <>
-      <div>
-        <h1>Cards</h1>
-        <div class="info-cards-grid">
-          {cards.map((card) => (
-            <div key={card.id} class="info-card">
-              <img src={card.image} alt={card.title} />
-              <div class="info-card-title">{card.title.toUpperCase()}</div>
-              <p>Tipo: {card.type}</p>
-            </div>
-          ))}
-        </div>
+      <div class="info-cards-grid">
+        {filteredCards.map((card) => (
+          <div key={card.id} class="info-card">
+            <img src={card.image} alt={card.title} />
+            <div class="info-card-title">{card.title.toUpperCase()}</div>
+          </div>
+        ))}
       </div>
     </>
   );
@@ -98,42 +99,100 @@ function MainContent() {
   );
 }
 
-function ButtonCards() {
+function ButtonCards({ handleFilter }) {
   return (
     <div class="all-cards-section">
-        <section class="cards-box"> 
-          <div class="card foto1" data-type="character">
-              <h1>CHARACTERS</h1>
-          </div>
-          <div class="card foto2" data-type="episode">
-              <h1>EPISODES</h1>
-          </div>
-          <div class="card foto3" data-type="news">
-              <h1>NEWS</h1>
-          </div>
-          <div class="card foto4" data-type="all">
-              <h1>SHOW ALL</h1>
-          </div>
-        </section>
-      </div>
+      <section class="cards-box">
+        <div class="card foto1" data-type="character" onClick={() => handleFilter('character')}>
+          <h1>CHARACTERS</h1>
+        </div>
+        <div class="card foto2" data-type="episode" onClick={() => handleFilter('episode')}>
+          <h1>EPISODES</h1>
+        </div>
+        <div class="card foto3" data-type="news" onClick={() => handleFilter('news')}>
+          <h1>NEWS</h1>
+        </div>
+        <div class="card foto4" data-type="all" onClick={() => handleFilter('all')}>
+          <h1>SHOW ALL</h1>
+        </div>
+      </section>
+    </div>
   );
 }
 
-function Container() {
+function CommentSection() {
+  const [email, setEmail] = useState('');
+  const [comment, setComment] = useState('');
+  const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setErrorMessage('');
+    setSuccessMessage('');
+
+    if (!emailRegex.test(email)) {
+      setErrorMessage('Endereço de e-mail inválido.');
+      return;
+    }
+
+    if (comment.trim() === '') {
+      setErrorMessage('Comentário está vazio.');
+      return;
+    }
+
+    const { data, error } = await supabase.from('comments').insert([{ email, comment}]);
+
+    if (error) {
+      setErrorMessage('Erro ao enviar comentário.')
+      console.error('Erro: ', error);
+    } else {
+      setSuccessMessage('Comentário enviado!');
+      setEmail('');
+      setComment('');
+    }
+
+  }
+
+  return (
+    <div class="comment-box">
+      <h1>Leave a comment</h1>
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+      <form onSubmit={handleSubmit}>
+        <textarea id="email" value={email} onChange={(e) => setEmail(e.target.value)} cols="30" rows="2" placeholder="email@example.com"></textarea>
+        <textarea id="comment" value={comment} onChange={(e) => setComment(e.target.value)} cols="30" rows="8" placeholder="Leave a comment"></textarea>
+        <button type="submit" class="comment-submit main-button">COMMENT</button>
+      </form>
+    </div>
+  );
+}
+
+function Container({ handleFilter, filter }) {
   return (
     <div class="container">
       <MainContent />
-      <ButtonCards />
-      <Cards />
+      <ButtonCards handleFilter={handleFilter} filter={filter}/>
+      <Cards filter={filter}/>
+      <CommentSection />
     </div>
   );
 }
 
 export default function HomePage() {
+  const [filter, setFilter] = useState('all')
+
+  const handleFilter = (type) => {
+    setFilter(type)
+  }
+
   return (
     <>
       <Logo />
-      <Container />
+      <Container handleFilter={handleFilter} filter={filter}/>
     </>
   )
 }

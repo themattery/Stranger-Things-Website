@@ -22,6 +22,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: Teko, Arial, Helvetica, sans-serif;
 }
 
 /* Header */
@@ -45,7 +46,6 @@ body {
 
 .header ul li a {
   text-decoration: none;
-  font-family: Teko, sans-serif;
   font-size: 1.2rem;
   font-weight: 500;
   color: var(--red);
@@ -57,7 +57,6 @@ body {
   text-align: center;
   margin: 10%;
   text-transform: uppercase;
-  font-family: Teko, Arial, Helvetica, sans-serif;;
 } 
 
 .main-logo-title {
@@ -109,10 +108,6 @@ body {
 
 strong {
   color: var(--red);
-}
-
-.main-content {
-  font-family: Teko, sans-serif;
 }
 
 .main-content-title {
@@ -188,6 +183,7 @@ strong {
   align-items: center;
   justify-content: center;
   width: 300px;
+  min-width: 100px;
   height: 250px;
   background-position: center;
   background-size: cover;
@@ -195,7 +191,6 @@ strong {
   filter: grayscale(100%);
   color: transparent;
   transition: 0.5s;
-  font-family: Teko, sans-serif;
   font-weight: bold;
 }
 
@@ -209,7 +204,7 @@ strong {
   transition: 1s;
   transform: scale(120%);
   z-index: 1;
-  border-radius: 50px;
+  border-radius: 10px;
 }
 
 .foto1 {
@@ -245,7 +240,6 @@ strong {
   border: 2px solid var(--shadow-color);
   box-shadow: 4px 4px var(--shadow-color);
   border-radius: 5px;
-  font-family: Teko, sans-serif;
   transition: 0.5s;
 }
 
@@ -270,14 +264,43 @@ strong {
   padding: 0 10px;
 }
 
-@media (max-width: 800px) {
+.comment-box {
+  margin-top: 20px;
+}
+
+.comment-box form {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  width: 50%;
+}
+
+.comment-box textarea {
+  border: 2px solid var(--grey);
+  border-radius: 5px;
+}
+
+.comment-submit {
+  border: none;
+  font-family: 'Teko', sans-serif;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+@media (max-width: 1100px) {
   .main-logo {
     width: auto;
+  }
+  .container {
+    max-width: 100%;
   }
   .info-grid {
     display: flex;
     flex-direction: column;
     gap: 5px;
+  }
+  .comment-box form {
+    width: 100%;
   }
 }
 
@@ -292,7 +315,13 @@ strong {
     width: auto;
   }
   .card {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
+  }
+  .cards-box {
+    flex-wrap: wrap;
+  }
+  .comment-box form {
+    width: 100%;
   }
 }
