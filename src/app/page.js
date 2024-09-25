@@ -175,7 +175,7 @@ function Container({ handleFilter, filter }) {
   return (
     <div class="container">
       <MainContent />
-      <ButtonCards handleFilter={handleFilter} filter={filter}/>
+      <ButtonCards handleFilter={handleFilter} />
       <Cards filter={filter}/>
       <CommentSection />
     </div>
