@@ -1,0 +1,34 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build and Export
+        run: |
+          npm run build
+          npm run export
+
+      - name: Deploy to GitHub Pages
+        run: |
+          npm install --save-dev gh-pages
+          npx gh-pages -d out
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

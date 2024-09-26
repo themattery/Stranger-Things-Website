@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <body> 
         <header className="header">
           <a className="logo" href="#">
-            <Image src="/Stranger-Things-Website/img/Stranger-Things-Logo.png" alt="Logo" width={60} height={40} />
+            <Image src="/Stranger-Things-Website/img/Stranger-Things-Logo.png" alt="Logo" width={130} height={70} />
           </a>
           <nav>
             <ul>
