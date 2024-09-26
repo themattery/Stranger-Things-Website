@@ -14,7 +14,7 @@
 }
 
 body {
-  background-image: url(/img/backgroundST.jpg);
+  background-image: url('/Stranger-Things-Website/img/backgroundST.jpg');
   background-position: center; 
   background-size: cover;
   background-attachment: fixed;
@@ -209,16 +209,16 @@ strong {
 }
 
 .foto1 {
-  background-image: url(/img/Cards-img/card1.jpg)
+  background-image: url('/Stranger-Things-Website/img/Cards-img/card1.jpg')
 }
 .foto2 {
-  background-image: url(/img/Cards-img/card2.jpg);
+  background-image: url('/Stranger-Things-Website/img/Cards-img/card2.jpg');
 }
 .foto3 {
-  background-image: url(/img/Cards-img/card3.jpg);
+  background-image: url('/Stranger-Things-Website/img/Cards-img/card3.jpg');
 }
 .foto4 {
-  background-image: url(/img/Cards-img/card4.jpg);
+  background-image: url('/Stranger-Things-Website/img/Cards-img/card4.jpg');
 }
 
 /* Info Cards */

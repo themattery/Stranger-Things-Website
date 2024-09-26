@@ -1,4 +1,6 @@
 import '../styles/globals.css';
+import Link from "next/link";
+import Image from 'next/image';
 
 export default function RootLayout({ children }) {
   return (
@@ -6,21 +8,21 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" type="image/svg+xml" href="/img/Stranger-Things-Logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Teko:wght@300..700&display=swap" rel="stylesheet" />
         <title>Arcadia</title>
       </head>
-      <body>
-        <header class="header">
-          <a class="logo" href="#">
-            <img src="./img/Stranger-Things-Logo.png" alt="" width="120px" />
+      <body> 
+        <header className="header">
+          <a className="logo" href="#">
+            <Image src="/Stranger-Things-Website/img/Stranger-Things-Logo.png" alt="Logo" width={60} height={40} />
           </a>
           <nav>
             <ul>
-              <li><a href="/">HOME</a></li>
-              <li><a href="/characters">CHARACTERS</a></li>
-              <li><a href="/news">NEWS</a></li>
-              <li><a href="/about">ABOUT</a></li>
+              <li><Link href="/">HOME</Link></li>
+              <li><Link href="/characters">CHARACTERS</Link></li>
+              <li><Link href="/news">NEWS</Link></li>
+              <li><Link href="/about">ABOUT</Link></li>
             </ul>
           </nav>
         </header>
