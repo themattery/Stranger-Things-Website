@@ -6,7 +6,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/svg+xml" href="/img/Stranger-Things-Logo.png" />
+        <link rel="icon" type="image/svg+xml" href="/Stranger-Things-Website/img/Stranger-Things-Logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Teko:wght@300..700&display=swap" rel="stylesheet" />
@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <body> 
         <header className="header">
           <a className="logo" href="#">
-            <Image src="/Stranger-Things-Website/img/Stranger-Things-Logo.png" alt="Logo" width={130} height={70} />
+            <Image src="/Stranger-Things-Website/img/Stranger-Things-Logo.png" alt="Logo" width={100} height={60} />
           </a>
           <nav>
             <ul>

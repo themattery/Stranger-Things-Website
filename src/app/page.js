@@ -7,7 +7,7 @@ function Logo() {
   return (
     <div className="main-logo">
       <figure>
-        <Image src="/Stranger-Things-Website/img/st_logo_netflix.png.webp" alt="Stranger Things Logo" width={500} height={250} />
+        <Image src="/Stranger-Things-Website/img/st_logo_netflix.png.webp" alt="Stranger Things Logo" width={400} height={200} />
         <figcaption className="main-logo-title">- The Official Store -</figcaption>
         <p className="main-logo-caption">DON&apos;T MISS THE OFFICIAL STORE COMING TO YOUR CITY</p>
       </figure>
